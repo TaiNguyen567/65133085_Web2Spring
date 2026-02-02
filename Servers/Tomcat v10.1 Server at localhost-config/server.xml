@@ -142,7 +142,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="ViDuHelloWorld" path="/ViDuHelloWorld" reloadable="true" source="org.eclipse.jst.jee.server:ViDuHelloWorld"/><Context docBase="ViDuHelloWorldServlet" path="/ViDuHelloWorldServlet" reloadable="true" source="org.eclipse.jst.jee.server:ViDuHelloWorldServlet"/><Context docBase="ViDuHelloWorldServlet2" path="/ViDuHelloWorldServlet2" reloadable="true" source="org.eclipse.jst.jee.server:ViDuHelloWorldServlet2"/><Context docBase="AboutMe" path="/AboutMe" reloadable="true" source="org.eclipse.jst.jee.server:AboutMe"/></Host>
+      <Context docBase="ViDuHelloWorld" path="/ViDuHelloWorld" reloadable="true" source="org.eclipse.jst.jee.server:ViDuHelloWorld"/><Context docBase="ViDuHelloWorldServlet" path="/ViDuHelloWorldServlet" reloadable="true" source="org.eclipse.jst.jee.server:ViDuHelloWorldServlet"/><Context docBase="ViDuHelloWorldServlet2" path="/ViDuHelloWorldServlet2" reloadable="true" source="org.eclipse.jst.jee.server:ViDuHelloWorldServlet2"/><Context docBase="AboutMe" path="/AboutMe" reloadable="true" source="org.eclipse.jst.jee.server:AboutMe"/><Context docBase="BMI" path="/BMI" reloadable="true" source="org.eclipse.jst.jee.server:BMI"/></Host>
     </Engine>
   </Service>
 </Server>

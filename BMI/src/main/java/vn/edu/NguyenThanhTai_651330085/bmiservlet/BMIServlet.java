@@ -1,4 +1,4 @@
-package vn.edu.NguyenThanhTai_651330085;
+package vn.edu.NguyenThanhTai_651330085.bmiservlet;
 
 import java.io.IOException;
 
