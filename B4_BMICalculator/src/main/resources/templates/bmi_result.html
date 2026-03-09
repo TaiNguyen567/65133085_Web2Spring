@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kết quả BMI</title>
+</head>
+<body>
+    <h2>Kết quả kiểm tra của bạn</h2>
+    
+    <p>Chỉ số BMI của bạn là: <strong th:text="${chiSoBmi}" style="color: blue;">0.00</strong></p>
+    <p>Đánh giá sức khỏe: <strong th:text="${ketLuan}" style="color: red;">Đang cập nhật</strong></p>
+    
+    <br>
+    <a href="/tinh-bmi">Tính lại cho người khác</a>
+</body>
+</html>
