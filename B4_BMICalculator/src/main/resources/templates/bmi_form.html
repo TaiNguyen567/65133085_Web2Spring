@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tính chỉ số BMI</title>
+</head>
+<body>
+    <h2>Kiểm tra sức khỏe BMI của bạn</h2>
+    
+    <form action="/ket-qua" method="post">
+        <p>
+            Chiều cao (Tính bằng mét, ví dụ 1.70): <br>
+            <input type="number" step="0.01" name="chieuCao" required>
+        </p>
+        <p>
+            Cân nặng (Tính bằng kg, ví dụ 65): <br>
+            <input type="number" step="0.1" name="canNang" required>
+        </p>
+        <button type="submit">Tính toán ngay</button>
+    </form>
+</body>
+</html>
