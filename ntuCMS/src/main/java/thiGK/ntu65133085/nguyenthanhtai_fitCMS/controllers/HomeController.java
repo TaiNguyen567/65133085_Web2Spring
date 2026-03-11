@@ -21,7 +21,7 @@ public class HomeController {
 		dsTrang.add(new Page(3, "Sản phẩm", "product", "Danh sách sản phẩm", 0));
 	}
 
-	@GetMapping({ "/", "/dashboard", "/dasdboard" })
+	@GetMapping({ "/dash-board" })
 	public String home() {
 		return "index";
 	}
