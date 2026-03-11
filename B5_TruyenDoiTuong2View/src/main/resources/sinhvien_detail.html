@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thông tin Đối tượng Sinh Viên</title>
+</head>
+<body>
+    <h2>Chi tiết Sinh Viên</h2>
+    
+    <ul>
+        <li><strong>MSSV:</strong> <span th:text="${sinhVien.mssv}"></span></li>
+        <li><strong>Họ tên:</strong> <span th:text="${sinhVien.hoTen}"></span></li>
+        <li><strong>Điểm trung bình:</strong> <span th:text="${sinhVien.diemTrungBinh}"></span></li>
+    </ul>
+    
+</body>
+</html>
