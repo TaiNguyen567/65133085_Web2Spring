@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="dynamic_layout(content)">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Thi Thử Lập Trình Web 2</title>
+    <title>Thi Thử Lập Trình Web 2 - Dashboard</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; display: flex; justify-content: center; }
         .wrapper { border: 1px solid #000; width: 100%; max-width: 900px; }
@@ -25,7 +25,7 @@
                 TRƯỜNG ĐẠI HỌC NHA TRANG<br>
                 KHOA CÔNG NGHỆ THÔNG TIN
             </div>
-            <div class="user-info">[UserName]</div>
+            <div class="user-info">[Nguyễn Thanh Tài]</div>
         </header>
 
         <div class="main-area">
@@ -39,8 +39,17 @@
                 </ul>
             </aside>
             
-            <main th:replace="${content}">
-                </main>
+            <main>
+                <h2 style="text-align: center;">SƠ YẾU LÝ LỊCH (CV)</h2>
+                <hr>
+                <div style="font-size: 16px; line-height: 1.6;">
+                    <p><strong>Họ và tên sinh viên:</strong> Nguyễn Thanh Tài</p>
+                    <p><strong>Mã số sinh viên:</strong> 65133085</p>
+                    <p><strong>Lớp/Khoa:</strong> Công nghệ thông tin</p>
+                    <p><strong>Kỹ năng:</strong> Java 21, Spring Boot, HTML, CSS</p>
+                    <p><strong>Mục tiêu:</strong> Hoàn thành xuất sắc bài thi giữa kỳ.</p>
+                </div>
+            </main>
         </div>
 
         <footer>

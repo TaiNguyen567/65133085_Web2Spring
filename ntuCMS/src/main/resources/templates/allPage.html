@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Page - Lập Trình Web 2</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; display: flex; justify-content: center; }
+        .wrapper { border: 1px solid #000; width: 100%; max-width: 900px; }
+        header { display: flex; justify-content: space-between; border-bottom: 1px solid #000; padding: 15px; }
+        .logo { font-size: 14px; color: #b71c1c; font-weight: bold; }
+        .main-area { display: flex; min-height: 400px; }
+        aside { width: 220px; border-right: 1px solid #000; }
+        aside ul { list-style: none; padding: 0; margin: 0; }
+        aside li { border-bottom: 1px solid #000; padding: 10px 15px; }
+        aside li a { text-decoration: none; color: #000; display: block; }
+        aside li a:hover { font-weight: bold; color: blue; }
+        main { flex: 1; padding: 20px; }
+        footer { border-top: 1px solid #000; text-align: center; padding: 10px; font-size: 14px; }
+        
+        /* CSS cho cái bảng danh sách */
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        table, th, td { border: 1px solid #000; }
+        th, td { padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        .action-links a { margin: 0 5px; text-decoration: none; color: blue; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="logo">
+                TRƯỜNG ĐẠI HỌC NHA TRANG<br>
+                KHOA CÔNG NGHỆ THÔNG TIN
+            </div>
+            <div class="user-info">[Nguyễn Thanh Tài]</div>
+        </header>
+
+        <div class="main-area">
+            <aside>
+                <ul>
+                    <li><a th:href="@{/dashboard}">Dashboard</a></li>
+                    <li><strong><a th:href="@{/page/all}">Page - List</a></strong></li>
+                    <li><a th:href="@{/page/new}">Page - Addnew</a></li>
+                    <li><a th:href="@{/post/all}">Post - List</a></li>
+                    <li><a th:href="@{/post/new}">Post - Addnew</a></li>
+                </ul>
+            </aside>
+            
+            <main>
+                <h3>Danh sách các Page</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Pagename</th>
+                            <th>parentPageId</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="page : ${listPages}">
+                            <td th:text="${page.id}">1</td>
+                            <td th:text="${page.pageName}">Tên trang</td>
+                            <td th:text="${page.parentPageId}">0</td>
+                            <td class="action-links">
+                                [<a th:href="@{'/page/view/' + ${page.id}}">view</a>] 
+                                [<a href="#">edit</a>] 
+                                [<a th:href="@{'/page/delete/' + ${page.id}}">delete</a>]
+                            </td>
+                        </tr>
+                        <tr th:if="${#lists.isEmpty(listPages)}">
+                            <td colspan="4">Không có dữ liệu Page nào.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <a th:href="@{/page/new}">+ Thêm mới Page</a>
+            </main>
+        </div>
+
+        <footer>
+            &copy; 2025 by Nguyen Thanh Tai – FIT.NTU
+        </footer>
+    </div>
+</body>
+</html>
