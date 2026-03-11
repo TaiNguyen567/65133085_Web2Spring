@@ -1,13 +1,13 @@
-package com.example.demo;
+package tai65133085.thspringboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class B3LayThamSoTaiControllerApplication {
+public class B2TruyenDuLieuSangViewApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(B3LayThamSoTaiControllerApplication.class, args);
+		SpringApplication.run(B2TruyenDuLieuSangViewApplication.class, args);
 	}
 
 }

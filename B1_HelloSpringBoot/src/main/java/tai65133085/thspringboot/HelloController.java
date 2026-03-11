@@ -1,4 +1,4 @@
-package com.example.demo;
+package tai65133085.thspringboot;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
