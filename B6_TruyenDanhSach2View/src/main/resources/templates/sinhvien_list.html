@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Sinh Viên</title>
+</head>
+<body>
+    <h2>Danh sách Sinh Viên</h2>
+    
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>MSSV</th>
+                <th>Họ tên</th>
+                <th>Điểm TB</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sv, stat : ${danhSachSV}">
+                <td th:text="${stat.count}"></td>
+                <td th:text="${sv.mssv}"></td>
+                <td th:text="${sv.hoTen}"></td>
+                <td th:text="${sv.diemTrungBinh}"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
