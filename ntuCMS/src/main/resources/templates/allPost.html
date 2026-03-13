@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách Post</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; display: flex; justify-content: center; }
+        .wrapper { border: 1px solid #000; width: 100%; max-width: 900px; }
+        header { display: flex; justify-content: space-between; border-bottom: 1px solid #000; padding: 15px; }
+        .main-area { display: flex; min-height: 400px; }
+        aside { width: 220px; border-right: 1px solid #000; }
+        aside ul { list-style: none; padding: 0; margin: 0; }
+        aside li { border-bottom: 1px solid #000; padding: 10px 15px; }
+        aside li a { text-decoration: none; color: #000; display: block; }
+        main { flex: 1; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        table, th, td { border: 1px solid #000; padding: 8px; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header><div>TRƯỜNG ĐẠI HỌC NHA TRANG</div><div>[Nguyễn Thanh Tài]</div></header>
+        <div class="main-area">
+            <aside>
+                <ul>
+                    <li><a th:href="@{/dashboard}">Dashboard</a></li>
+                    <li><a th:href="@{/page/all}">Page - List</a></li>
+                    <li><a th:href="@{/page/new}">Page - Addnew</a></li>
+                    <li><strong><a th:href="@{/post/all}">Post - List</a></strong></li>
+                    <li><a th:href="@{/post/new}">Post - Addnew</a></li>
+                </ul>
+            </aside>
+            <main>
+                <h3>Danh sách các Post</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Title</th>
+                            <th>CategoryId</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="post : ${listPosts}">
+                            <td th:text="${post.id}">1</td>
+                            <td th:text="${post.title}">Tiêu đề</td>
+                            <td th:text="${post.categoryId}">0</td>
+                            <td>
+                                [<a th:href="@{'/post/view/' + ${post.id}}">view</a>] 
+                                [<a href="#">edit</a>] 
+                                [<a th:href="@{'/post/delete/' + ${post.id}}">delete</a>]
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <a th:href="@{/post/new}">+ Thêm mới Post</a>
+            </main>
+        </div>
+    </div>
+</body>
+</html>

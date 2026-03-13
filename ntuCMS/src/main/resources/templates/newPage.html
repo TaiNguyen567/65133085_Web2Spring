@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm mới Page</title>
+    <style>
+        /* Bạn copy đoạn CSS từ file index.html dán vào đây cho giống khung nhé */
+        body { font-family: Arial, sans-serif; padding: 20px; display: flex; justify-content: center; }
+        .wrapper { border: 1px solid #000; width: 100%; max-width: 900px; }
+        header { display: flex; justify-content: space-between; border-bottom: 1px solid #000; padding: 15px; }
+        .main-area { display: flex; min-height: 400px; }
+        aside { width: 220px; border-right: 1px solid #000; }
+        aside ul { list-style: none; padding: 0; margin: 0; }
+        aside li { border-bottom: 1px solid #000; padding: 10px 15px; }
+        aside li a { text-decoration: none; color: #000; display: block; }
+        main { flex: 1; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <header><div>TRƯỜNG ĐẠI HỌC NHA TRANG</div><div>[Nguyễn Thanh Tài]</div></header>
+        <div class="main-area">
+            <aside>
+                <ul>
+                    <li><a th:href="@{/dashboard}">Dashboard</a></li>
+                    <li><a th:href="@{/page/all}">Page - List</a></li>
+                    <li><strong><a th:href="@{/page/new}">Page - Addnew</a></strong></li>
+                    <li><a th:href="@{/post/all}">Post - List</a></li>
+                    <li><a th:href="@{/post/new}">Post - Addnew</a></li>
+                </ul>
+            </aside>
+            <main>
+                <h3>Thêm mới Page</h3>
+                <form th:action="@{/page/new}" th:object="${page}" method="post">
+                    <p>ID: <input type="number" th:field="*{id}" required /></p>
+                    <p>Tên trang: <input type="text" th:field="*{pageName}" required /></p>
+                    <p>Từ khóa: <input type="text" th:field="*{keyword}" /></p>
+                    <p>Nội dung: <textarea th:field="*{content}"></textarea></p>
+                    <p>ID Trang cha: <input type="number" th:field="*{parentPageId}" value="0"/></p>
+                    <button type="submit">Lưu lại</button>
+                </form>
+            </main>
+        </div>
+    </div>
+</body>
+</html>
