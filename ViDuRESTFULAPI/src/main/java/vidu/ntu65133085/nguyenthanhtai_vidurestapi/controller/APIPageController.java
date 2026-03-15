@@ -2,6 +2,7 @@ package vidu.ntu65133085.nguyenthanhtai_vidurestapi.controller;
 
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import vidu.ntu65133085.nguyenthanhtai_vidurestapi.model.Page;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 public class APIPageController {
 
 	// Danh sách Page, Post (Dùng như một Database tạm thời)
