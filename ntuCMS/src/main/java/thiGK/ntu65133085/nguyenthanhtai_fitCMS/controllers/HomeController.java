@@ -2,17 +2,17 @@ package thiGK.ntu65133085.nguyenthanhtai_fitCMS.controllers;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import thiGK.ntu65133085.nguyenthanhtai_fitCMS.models.Page;
 import thiGK.ntu65133085.nguyenthanhtai_fitCMS.models.Post;
 
-@Controller
+@RestController
 public class HomeController {
 
 	ArrayList<Page> dsTrang = new ArrayList<Page>();
@@ -31,7 +31,7 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/page/all")
+	@GetMapping("/api/pages")
 	public String getAllPages(ModelMap m) {
 		m.addAttribute("listPages", dsTrang);
 		return "allPage";

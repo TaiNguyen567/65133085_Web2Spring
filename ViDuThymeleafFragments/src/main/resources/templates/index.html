@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang Chủ Demo Thymeleaf</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+
+    <h1>Chào mừng em đến với môn Phát triển Web!</h1>
+    <p>Đây là nội dung chính của trang web. Chỗ này mình tự viết code HTML bình thường.</p>
+    
+    <hr>
+    
+    <div th:replace="~{fragments/footer :: my-footer}"></div>
+
+</body>
+</html>
