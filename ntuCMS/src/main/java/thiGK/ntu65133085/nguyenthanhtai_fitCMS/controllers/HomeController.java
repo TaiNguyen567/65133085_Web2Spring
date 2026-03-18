@@ -1,39 +1,39 @@
 package thiGK.ntu65133085.nguyenthanhtai_fitCMS.controllers;
 
-import java.util.ArrayList;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import thiGK.ntu65133085.nguyenthanhtai_fitCMS.models.Page;
 import thiGK.ntu65133085.nguyenthanhtai_fitCMS.models.Post;
+import thiGK.ntu65133085.nguyenthanhtai_fitCMS.repositories.PageRepository;
+import thiGK.ntu65133085.nguyenthanhtai_fitCMS.repositories.PostRepository;
 
-@RestController
+@Controller // Dùng @Controller để trả về file giao diện HTML (Thymeleaf)
 public class HomeController {
 
-	ArrayList<Page> dsTrang = new ArrayList<Page>();
-	ArrayList<Post> dsBaiViet = new ArrayList<Post>();
+	// Inject các Repository để kết nối Database
+	@Autowired
+	private PageRepository pageRepository;
 
-	public HomeController() {
-		dsTrang.add(new Page(1, "Trang chủ", "home", "Nội dung trang chủ", 0));
-		dsTrang.add(new Page(2, "Giới thiệu", "about", "Giới thiệu về chúng tôi", 0));
+	@Autowired
+	private PostRepository postRepository;
 
-		dsBaiViet.add(new Post(1, "Bài viết 1", "Nội dung bài 1", 10));
-		dsBaiViet.add(new Post(2, "Bài viết 2", "Nội dung bài 2", 10));
-	}
-
-	@GetMapping({ "/", "/dashboard", "/dasdboard", "/dash-board" })
-	public String home() {
+	// Trang chủ Dashboard (Tôi thấy trong HTML của bạn có link /dashboard)
+	@GetMapping({ "/", "/dashboard" })
+	public String dashboard() {
 		return "index";
 	}
 
-	@GetMapping("/api/pages")
+	// ==================== QUẢN LÝ PAGE ====================
+
+	@GetMapping("/page/all")
 	public String getAllPages(ModelMap m) {
-		m.addAttribute("listPages", dsTrang);
+		m.addAttribute("listPages", pageRepository.findAll()); // Lấy từ Database
 		return "allPage";
 	}
 
@@ -45,51 +45,40 @@ public class HomeController {
 
 	@PostMapping("/page/new")
 	public String savePage(@ModelAttribute("page") Page newPage) {
-		dsTrang.add(newPage);
+		pageRepository.save(newPage); // Lưu thẳng vào Database
 		return "redirect:/page/all";
 	}
 
 	@GetMapping("/page/view/{id}")
 	public String viewPage(@PathVariable("id") int id, ModelMap m) {
-		Page foundPage = dsTrang.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+		Page foundPage = pageRepository.findById(id).orElse(null);
 		m.addAttribute("page", foundPage);
 		return "viewPage";
 	}
 
 	@GetMapping("/page/delete/{id}")
 	public String deletePage(@PathVariable("id") int id) {
-		dsTrang.removeIf(p -> p.getId() == id);
+		pageRepository.deleteById(id); // Xóa trong Database
 		return "redirect:/page/all";
 	}
 
+	// ==================== QUẢN LÝ POST ====================
+
 	@GetMapping("/post/all")
 	public String getAllPosts(ModelMap m) {
-		m.addAttribute("listPosts", dsBaiViet);
+		m.addAttribute("listPosts", postRepository.findAll());
 		return "allPost";
 	}
 
 	@GetMapping("/post/new")
 	public String showNewPostForm(ModelMap m) {
 		m.addAttribute("post", new Post());
-		return "newPost";
+		return "newPost"; // (Nhớ đảm bảo bạn có file newPost.html nhé)
 	}
 
 	@PostMapping("/post/new")
 	public String savePost(@ModelAttribute("post") Post newPost) {
-		dsBaiViet.add(newPost);
-		return "redirect:/post/all";
-	}
-
-	@GetMapping("/post/view/{id}")
-	public String viewPost(@PathVariable("id") int id, ModelMap m) {
-		Post foundPost = dsBaiViet.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
-		m.addAttribute("post", foundPost);
-		return "viewPost";
-	}
-
-	@GetMapping("/post/delete/{id}")
-	public String deletePost(@PathVariable("id") int id) {
-		dsBaiViet.removeIf(p -> p.getId() == id);
+		postRepository.save(newPost);
 		return "redirect:/post/all";
 	}
 }

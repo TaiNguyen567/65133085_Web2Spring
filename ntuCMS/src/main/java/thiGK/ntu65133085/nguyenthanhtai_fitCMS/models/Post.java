@@ -1,7 +1,15 @@
 package thiGK.ntu65133085.nguyenthanhtai_fitCMS.models;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private String title;
 	private String content;
 	private int categoryId;

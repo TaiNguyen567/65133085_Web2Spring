@@ -1,4 +1,4 @@
-package thiGK.ntu65133085.nguyenthanhtai_fitCMS.controllers;
+package thiGK.ntu65133085.nguyenthanhtai_fitCMS;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

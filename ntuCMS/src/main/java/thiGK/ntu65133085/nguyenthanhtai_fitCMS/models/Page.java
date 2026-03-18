@@ -1,7 +1,19 @@
 package thiGK.ntu65133085.nguyenthanhtai_fitCMS.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "pages")
 public class Page {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
 	private String pageName;
 	private String keyword;
 	private String content;
