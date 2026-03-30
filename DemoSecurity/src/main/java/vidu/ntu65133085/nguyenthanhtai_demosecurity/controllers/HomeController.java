@@ -9,4 +9,19 @@ public class HomeController {
 	public String index() {
 		return "HomePage";
 	}
+
+	@GetMapping("/products")
+	public String indexP() {
+		return "sanpham";
+	}
+
+	@GetMapping("/admin")
+	public String indexAD() {
+		return "indexadmin";
+	}
+
+	@GetMapping("/hello")
+	public String hello() {
+		return "hello";
+	}
 }
