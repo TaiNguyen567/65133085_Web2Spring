@@ -2,33 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Danh Sach Tin</title>
+    <title>Hệ Thống Quản Lý Tin Tức</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; margin: 0; color: #0f172a; display: flex; min-height: 100vh; }
+        
+        /* Sidebar Sang trọng */
+        .sidebar { width: 280px; background: #0f172a; color: white; padding: 30px 20px; box-shadow: 4px 0 15px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+        .brand { font-size: 22px; font-weight: 700; margin-bottom: 40px; padding-left: 10px; letter-spacing: -0.5px; display: flex; align-items: center; gap: 10px; }
+        .brand span { color: #38bdf8; }
+        .sidebar h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; color: #64748b; margin-bottom: 15px; padding-left: 10px; }
+        .nav-list { list-style: none; padding: 0; margin: 0; flex: 1; }
+        .nav-list li { margin-bottom: 8px; }
+        .nav-list a { text-decoration: none; color: #cbd5e1; display: block; padding: 12px 15px; border-radius: 10px; transition: all 0.3s; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+        .nav-list a:hover { background-color: rgba(255,255,255,0.1); color: white; transform: translateX(5px); }
+        .btn-logout { margin-top: auto; background: rgba(239, 68, 68, 0.1); color: #ef4444; text-decoration: none; padding: 12px; border-radius: 10px; text-align: center; font-weight: 600; transition: all 0.3s; border: 1px solid rgba(239, 68, 68, 0.2); }
+        .btn-logout:hover { background: #ef4444; color: white; }
+
+        /* Nội dung chính */
+        .main-content { flex: 1; padding: 40px; }
+        .header-title { font-size: 28px; font-weight: 700; margin-bottom: 30px; color: #1e293b; }
+        .table-card { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); padding: 25px; }
+        
+        /* Bảng dữ liệu hiện đại */
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 15px; color: #64748b; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid #e2e8f0; }
+        td { padding: 18px 15px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+        tr { transition: all 0.2s; }
+        tr:hover td { background-color: #f8fafc; }
+        
+        .td-id { font-weight: 600; color: #94a3b8; width: 60px; }
+        .td-title { font-weight: 600; color: #0f172a; font-size: 16px; }
+        
+        /* Huy hiệu thể loại */
+        .badge { background: #e0f2fe; color: #0369a1; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-block; }
+        
+        /* Nút thao tác */
+        .btn-action { background: #f8fafc; color: #3b82f6; border: 1px solid #bfdbfe; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 14px; font-weight: 600; transition: all 0.2s; }
+        .btn-action:hover { background: #3b82f6; color: white; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); }
+        .empty-msg { text-align: center; padding: 40px; color: #94a3b8; font-size: 16px; }
+    </style>
 </head>
 <body>
-    <a th:href="@{/logout}">Dang Xuat</a>
-    <hr/>
-    <h3>Danh Muc The Loai</h3>
-    <ul>
-        <li><a th:href="@{/}">Tat Ca Tin</a></li>
-        <li th:each="tl : ${listTheLoai}">
-            <a th:href="@{'/theloai/' + ${tl.id}}" th:text="${tl.tenTheLoai}"></a>
-        </li>
-    </ul>
-    <hr/>
-    <h3>Danh Sach Tin Bai</h3>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Tieu De</th>
-            <th>The Loai</th>
-            <th>Chi Tiet</th>
-        </tr>
-        <tr th:each="t : ${listTin}">
-            <td th:text="${t.id}"></td>
-            <td th:text="${t.tieuDe}"></td>
-            <td th:text="${t.theLoaiTin.tenTheLoai}"></td>
-            <td><a th:href="@{'/tin/chitiet/' + ${t.id}}">Xem</a></td>
-        </tr>
-    </table>
+    <div class="sidebar">
+        <div class="brand">🚀 <span>NewsAdmin</span></div>
+        <h3>Danh mục quản lý</h3>
+        <ul class="nav-list">
+            <li><a th:href="@{/}">📰 Tất Cả Bài Viết</a></li>
+            <li th:each="tl : ${listTheLoai}">
+                <a th:href="@{'/theloai/' + ${tl.id}}" th:text="'📁 ' + ${tl.tenTheLoai}"></a>
+            </li>
+        </ul>
+        <a th:href="@{/logout}" class="btn-logout">Đăng Xuất</a>
+    </div>
+
+    <div class="main-content">
+        <h2 class="header-title">Danh Sách Tin Tức</h2>
+        
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mã</th>
+                        <th>Tiêu đề bài viết</th>
+                        <th>Chuyên mục</th>
+                        <th style="text-align: right;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="t : ${listTin}">
+                        <td class="td-id" th:text="'#' + ${t.id}"></td>
+                        <td class="td-title" th:text="${t.tieuDe}"></td>
+                        <td><span class="badge" th:text="${t.theLoaiTin.tenTheLoai}"></span></td>
+                        <td style="text-align: right;">
+                            <a th:href="@{'/tin/chitiet/' + ${t.id}}" class="btn-action">Đọc tin</a>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(listTin)}">
+                        <td colspan="4">
+                            <div class="empty-msg">Chưa có bài viết nào trong danh mục này!</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

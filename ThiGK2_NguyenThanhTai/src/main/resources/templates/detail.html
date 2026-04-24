@@ -2,14 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Chi Tiet Tin</title>
+    <title>Chi Tiết Bài Viết</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Merriweather:wght@400;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; margin: 0; padding: 50px 20px; display: flex; justify-content: center; }
+        .article-box { background: white; padding: 50px 60px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); width: 100%; max-width: 750px; position: relative; }
+        
+        .badge { background: #f1f5f9; color: #475569; padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 20px; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid #e2e8f0; }
+        
+        .title { font-family: 'Merriweather', serif; color: #0f172a; font-size: 32px; font-weight: 700; margin-top: 0; margin-bottom: 25px; line-height: 1.4; }
+        
+        .divider { height: 4px; width: 60px; background: #38bdf8; border-radius: 2px; margin-bottom: 30px; }
+        
+        .content { font-family: 'Inter', sans-serif; line-height: 1.9; color: #334155; font-size: 17px; text-align: justify; white-space: pre-line; min-height: 250px; }
+        .content::first-letter { font-size: 3.5em; font-family: 'Merriweather', serif; font-weight: bold; float: left; margin-right: 12px; margin-top: -8px; color: #0f172a; }
+        
+        .footer-action { margin-top: 50px; padding-top: 25px; border-top: 1px solid #f1f5f9; }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; background-color: white; color: #0f172a; padding: 12px 24px; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; border: 2px solid #e2e8f0; }
+        .btn-back:hover { border-color: #0f172a; background: #0f172a; color: white; transform: translateX(-5px); }
+        
+        .error-box { text-align: center; padding: 50px 0; }
+        .error-box h2 { color: #ef4444; }
+    </style>
 </head>
 <body>
-    <h2 th:text="${tin.tieuDe}"></h2>
-    <p><strong>The Loai: </strong> <span th:text="${tin.theLoaiTin.tenTheLoai}"></span></p>
-    <hr/>
-    <p th:text="${tin.noiDung}"></p>
-    <br/>
-    <a th:href="@{/}">Quay lai danh sach</a>
+    <div class="article-box" th:if="${tin != null}">
+        <span class="badge" th:text="${tin.theLoaiTin.tenTheLoai}"></span>
+        
+        <h1 class="title" th:text="${tin.tieuDe}"></h1>
+        
+        <div class="divider"></div>
+        
+        <div class="content" th:text="${tin.noiDung}"></div>
+        
+        <div class="footer-action">
+            <a th:href="@{/}" class="btn-back">
+                <span>←</span> Trở về trang chủ
+            </a>
+        </div>
+    </div>
+    
+    <div class="article-box error-box" th:if="${tin == null}">
+        <h2>Không tìm thấy bài viết!</h2>
+        <p style="color: #64748b;">Bài viết này có thể đã bị xóa hoặc không tồn tại.</p>
+        <a th:href="@{/}" class="btn-back">Về trang chủ</a>
+    </div>
 </body>
 </html>
