@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh Sach Tin</title>
+</head>
+<body>
+    <a th:href="@{/logout}">Dang Xuat</a>
+    <hr/>
+    <h3>Danh Muc The Loai</h3>
+    <ul>
+        <li><a th:href="@{/}">Tat Ca Tin</a></li>
+        <li th:each="tl : ${listTheLoai}">
+            <a th:href="@{'/theloai/' + ${tl.id}}" th:text="${tl.tenTheLoai}"></a>
+        </li>
+    </ul>
+    <hr/>
+    <h3>Danh Sach Tin Bai</h3>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Tieu De</th>
+            <th>The Loai</th>
+            <th>Chi Tiet</th>
+        </tr>
+        <tr th:each="t : ${listTin}">
+            <td th:text="${t.id}"></td>
+            <td th:text="${t.tieuDe}"></td>
+            <td th:text="${t.theLoaiTin.tenTheLoai}"></td>
+            <td><a th:href="@{'/tin/chitiet/' + ${t.id}}">Xem</a></td>
+        </tr>
+    </table>
+</body>
+</html>

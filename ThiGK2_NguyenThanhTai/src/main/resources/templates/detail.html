@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Tiet Tin</title>
+</head>
+<body>
+    <h2 th:text="${tin.tieuDe}"></h2>
+    <p><strong>The Loai: </strong> <span th:text="${tin.theLoaiTin.tenTheLoai}"></span></p>
+    <hr/>
+    <p th:text="${tin.noiDung}"></p>
+    <br/>
+    <a th:href="@{/}">Quay lai danh sach</a>
+</body>
+</html>
